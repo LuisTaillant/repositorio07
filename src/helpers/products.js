@@ -28,7 +28,7 @@ const products = [
     name: "PC MAC",
     price: 190,
     stock: 40,
-    category: "Desktop",
+    category: "desktop",
     imag: "http://localhost:3000/img/product04.png",
   },
   {
