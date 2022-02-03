@@ -9,7 +9,7 @@ function ItemCount({ initial, stock, onAdd }) {
     }
   };
 
-  const handleRestar = () => {
+  const handlerRestar = () => {
     if (contador > initial) {
       setcontador(contador - 1);
     }
@@ -26,16 +26,14 @@ function ItemCount({ initial, stock, onAdd }) {
         +{" "}
       </button>
       {contador}
-      <button className="btn btn-outline-primary" onClick={handleRestar}>
+      <button className="btn btn-outline-primary" onClick={handlerRestar}>
         {" "}
         -{" "}
-      </button>{" "}
+      </button>
       <br />
       <button className="btn btn-outline-primary btn-block" onClick={agregar}>
-        {" "}
-        Agregar al carrito{" "}
-      </button>{" "}
-      <br />
+        Agregar al carrito
+      </button>
     </div>
   );
 }

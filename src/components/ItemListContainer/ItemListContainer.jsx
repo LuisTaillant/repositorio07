@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import ItemCount from "../ItemCount/ItemCount";
+import { useParams } from "react-router-dom";
 import ItemList from "../ItemList/ItemList";
 import getProducts from "../../helpers/getProducts";
-
-function onAdd(cant) {
-  console.log(cant);
-}
+import ItemCount from "../ItemCount/ItemCount";
 
 const ItemListContainer = () => {
   const [listProducts, setListProducts] = useState([]);
@@ -25,9 +21,10 @@ const ItemListContainer = () => {
     // .finally(() => setloading(false));
   }, [idCategoria]);
 
+  console.log(idCategoria);
+
   return (
     <>
-      {/* <ItemCount initial={1} stock={5} onAdd={onAdd} /> */}
       <ItemList listProducts={listProducts} />
     </>
   );

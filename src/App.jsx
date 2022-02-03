@@ -5,40 +5,34 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Cart from "./components/Cart/Cart";
+import CartContextProvider from "./context/CartContext";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="App border border-3 border-primary">
-          <NavBar />
-          <Routes>
-            {/* esto es la vinculación ... */}
-            <Route exact path="/" element={<ItemListContainer />} />
-            <Route
-              exact
-              path="/categoria/:idCategoria"
-              element={<ItemListContainer />}
-            />
-            <Route
-              exact
-              path="/detalle/:idProducto"
-              element={<ItemDetailContainer />}
-            />
-            <Route exact path="/cart" element={<Cart />} />
-          </Routes>
-        </div>
+        <CartContextProvider>
+          <div className="App border border-3 border-primary">
+            <NavBar />
+            <Routes>
+              {/* esto es la vinculación ... */}
+              <Route exact path="/" element={<ItemListContainer />} />
+              <Route
+                exact
+                path="/categoria/:idCategoria"
+                element={<ItemListContainer />}
+              />
+              <Route
+                exact
+                path="/detalle/:idProducto"
+                element={<ItemDetailContainer />}
+              />
+              <Route exact path="/cart" element={<Cart />} />
+            </Routes>
+          </div>
+        </CartContextProvider>
       </BrowserRouter>
-
-      {/*  <ItemListContainer greeting="Hola soy una prop greeting" /> */}
-      {/*  <ItemDetailContainer /> */}
     </>
-
-    // <div className="App">
-    //   <NavBar />
-    //   {/*<ItemListContainer greetings="soy una props" />*/}
-    //   <ItemDetailContainer />
-    // </div>
   );
 }
 
