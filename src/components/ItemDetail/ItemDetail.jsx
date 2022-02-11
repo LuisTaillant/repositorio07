@@ -8,7 +8,7 @@ const ItemDetail = ({ product }) => {
   const { cartList, agregarAlCarrito } = useCartContext();
 
   function onAdd(cant) {
-    setContador(cant);
+    agregarAlCarrito({ item: product, cantidad: cant });
   }
 
   console.log(cartList);
