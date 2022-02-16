@@ -33,8 +33,6 @@ const ItemListContainer = () => {
       .finally(() => setloading(false));
   }, [idCategoria]);
 
-  console.log(idCategoria);
-
   return (
     <>
       {loading ? (

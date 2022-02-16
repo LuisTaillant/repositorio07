@@ -1,17 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  limit,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import getProducts from "../../helpers/getProducts";
 import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
@@ -34,8 +23,6 @@ const ItemDetailContainer = () => {
     //   .catch((err) => console.log(err))
     //   .finally(() => setLoading(false));
   }, []);
-
-  console.log(product);
 
   return (
     <>{loading ? <h2>Cargando ...</h2> : <ItemDetail product={product} />}</>
