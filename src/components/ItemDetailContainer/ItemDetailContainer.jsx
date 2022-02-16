@@ -1,4 +1,15 @@
 import React, { useState, useEffect } from "react";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  limit,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { useParams } from "react-router-dom";
 import getProducts from "../../helpers/getProducts";
 import ItemDetail from "../ItemDetail/ItemDetail";
@@ -10,10 +21,18 @@ const ItemDetailContainer = () => {
   const { idProducto } = useParams();
 
   useEffect(() => {
-    getProducts()
-      .then((data) => setProduct(data.find((item) => item.id === idProducto)))
+    const db = getFirestore();
+
+    const itemRef = doc(db, "items", idProducto);
+    getDoc(itemRef)
+      .then((resp) => setProduct({ id: resp.id, ...resp.data() }))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
+
+    // getProducts()
+    //   .then((data) => setProduct(data.find((item) => item.id === idProducto)))
+    //   .catch((err) => console.log(err))
+    //   .finally(() => setLoading(false));
   }, []);
 
   console.log(product);

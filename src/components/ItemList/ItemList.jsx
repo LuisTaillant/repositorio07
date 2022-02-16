@@ -2,6 +2,7 @@ import React from "react";
 import Item from "../Item/Item";
 
 const ItemList = ({ listProducts }) => {
+  console.log("itemlist");
   return (
     <>
       {listProducts.map((el) => (
@@ -11,7 +12,7 @@ const ItemList = ({ listProducts }) => {
           stock={el.stock}
           price={el.price}
           category={el.category}
-          imag={el.imag}
+          imag={el.imagUrl}
           id={el.id}
         />
       ))}
