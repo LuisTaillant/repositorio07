@@ -14,7 +14,7 @@ const ItemDetail = ({ product }) => {
 
   return (
     <>
-      <div key={product.id} className="col-md-4">
+      <div key={product.id} className="col">
         <div className="card w-100 mt-5">
           <div className="card-header">{`${product.name} - ${product.category}`}</div>
           <div className="card-body">
@@ -25,7 +25,7 @@ const ItemDetail = ({ product }) => {
           <div className="card-footer"> Excelente producto en stock</div>
         </div>
       </div>
-      <div className="col-md-4">
+      <div className="col">
         {contador === 0 ? (
           <ItemCount onAdd={onAdd} initial={1} stock={6} />
         ) : (

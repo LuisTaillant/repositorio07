@@ -1,18 +1,15 @@
 import { useCartContext } from "../../context/CartContext";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  doc,
-  updateDoc,
-  query,
-  where,
-  documentId,
-  writeBatch,
-  getDocs,
-} from "firebase/firestore";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { useState } from "react";
 
 const Cart = () => {
+  const [id, setId] = useState("");
+  const [dataForm, setDataForm] = useState({
+    email: "",
+    phone: "",
+    name: "",
+  });
+
   const { cartList, vaciarCarrito, sumaTotal, borrarItem } = useCartContext();
 
   const realizarCompra = async (e) => {
@@ -20,9 +17,8 @@ const Cart = () => {
 
     // Nuevo objeto de orders
     let orden = {};
-    //orden.date = Timestamp.fromDate(new Date())
 
-    orden.buyer = { name: "Luis", email: "LT@gmail.com", phone: "1234567890" };
+    orden.buyer = dataForm; //{ name: "Luis", email: "LT@gmail.com", phone: "1234567890" };
     orden.total = sumaTotal();
 
     orden.items = cartList.map((cartItem) => {
@@ -41,7 +37,7 @@ const Cart = () => {
 
     const db = getFirestore();
     const ordersCollection = collection(db, "orders");
-    await addDoc(ordersCollection, orden).then((resp) => console.log(resp));
+    await addDoc(ordersCollection, orden).then((resp) => setId(resp.id));
 
     // actualizar stock, no es obligatoria, solo el que quiera.
 
@@ -64,25 +60,74 @@ const Cart = () => {
     // batch.commit()
   };
 
-  console.log(cartList);
+  const handleChange = (event) => {
+    setDataForm({
+      ...dataForm,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  console.log(dataForm);
 
   return (
     <div>
+      {id !== "" && `El id de la orden es : ${id} `}
+      <br />
       {cartList.length !== 0 ? (
         <>
           {cartList.map((produ) => (
             <div>
-              <li>
-                {produ.name} precio: {produ.price} cantidad: {produ.cantidad}
-              </li>
+              <div className="card-body">
+                <img src={produ.item.imagUrl} alt="" className="w-25" />
+                <h4>Precio: {produ.item.price}</h4>
+                <h4>Cantidad: {produ.cantidad}</h4>
+              </div>
               <button onClick={() => borrarItem(produ.item.id)}>x</button>
             </div>
           ))}
-          {`la suma es ${sumaTotal()}`}
+          <br />
+          <h4>{`la suma es ${sumaTotal()}`}</h4>
+          <br />
+
+          <form onSubmit={realizarCompra}>
+            <input
+              type="text"
+              name="name"
+              placeholder="name"
+              onChange={handleChange}
+              value={dataForm.name}
+            />
+            <br />
+            <input
+              type="number"
+              name="phone"
+              placeholder="tel"
+              onChange={handleChange}
+              value={dataForm.phone}
+            />
+            <br />
+            <input
+              type="email"
+              name="email"
+              placeholder="email"
+              onChange={handleChange}
+              value={dataForm.email}
+            />
+            <input
+              type="email"
+              name="validarEmail"
+              placeholder="Repetir Email"
+              onChange={handleChange}
+              //value={}
+            />
+            <br />
+            <button>Generar Orden</button>
+          </form>
         </>
       ) : (
         <label>no hay producto, vaya ya a comprar</label>
       )}
+      <br />
       <button onClick={vaciarCarrito}>Vaciar Carrito</button>
       <br />
       <button onClick={realizarCompra}>Crear Orden</button>

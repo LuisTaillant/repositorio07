@@ -10,7 +10,7 @@ const NavBar = () => {
 
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar bg="dark" variant="dark">
         <Container>
           <NavLink to="/">Tecno-Ecommerce</NavLink>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -20,7 +20,6 @@ const NavBar = () => {
               <Link to="/categoria/auriculares">Auriculares</Link>
             </Nav>
             <Nav>
-              {/* <Nav.Link href="#deets">More deets</Nav.Link> */}
               <Link to="/cart">
                 {cantidad() !== 0 && cantidad()}
                 <CartWidget />

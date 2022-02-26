@@ -12,7 +12,7 @@ function App() {
     <>
       <BrowserRouter>
         <CartContextProvider>
-          <div className="App border border-3 border-primary">
+          <div className="App ">
             <NavBar />
             <Routes>
               {/* esto es la vinculación ... */}

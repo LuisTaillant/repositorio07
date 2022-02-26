@@ -17,11 +17,6 @@ const ItemDetailContainer = () => {
       .then((resp) => setProduct({ id: resp.id, ...resp.data() }))
       .catch((err) => console.log(err))
       .finally(() => setLoading(false));
-
-    // getProducts()
-    //   .then((data) => setProduct(data.find((item) => item.id === idProducto)))
-    //   .catch((err) => console.log(err))
-    //   .finally(() => setLoading(false));
   }, []);
 
   return (
