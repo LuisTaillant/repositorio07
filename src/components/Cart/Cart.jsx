@@ -67,8 +67,6 @@ const Cart = () => {
     });
   };
 
-  console.log(dataForm);
-
   return (
     <div>
       {id !== "" && `El id de la orden es : ${id} `}
@@ -113,13 +111,7 @@ const Cart = () => {
               onChange={handleChange}
               value={dataForm.email}
             />
-            <input
-              type="email"
-              name="validarEmail"
-              placeholder="Repetir Email"
-              onChange={handleChange}
-              //value={}
-            />
+
             <br />
             <button>Generar Orden</button>
           </form>
@@ -130,7 +122,6 @@ const Cart = () => {
       <br />
       <button onClick={vaciarCarrito}>Vaciar Carrito</button>
       <br />
-      <button onClick={realizarCompra}>Crear Orden</button>
     </div>
   );
 };

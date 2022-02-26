@@ -35,7 +35,7 @@ const ItemListContainer = () => {
 
   return (
     <>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
+      <div className="row row-cols-1 row-cols-md-3 g-4">
         {loading ? (
           <h2>Cargando ...</h2>
         ) : (

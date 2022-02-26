@@ -15,7 +15,6 @@ function App() {
           <div className="App ">
             <NavBar />
             <Routes>
-              {/* esto es la vinculación ... */}
               <Route exact path="/" element={<ItemListContainer />} />
               <Route
                 exact

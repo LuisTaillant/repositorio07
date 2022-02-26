@@ -2,7 +2,6 @@ import React from "react";
 import Item from "../Item/Item";
 
 const ItemList = ({ listProducts }) => {
-  console.log("itemlist");
   return (
     <>
       {listProducts.map((el) => (

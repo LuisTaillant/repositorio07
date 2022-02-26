@@ -6,13 +6,10 @@ export function useCartContext() {
   return useContext(cartContext);
 }
 
-//crear un componente
-
 function CartContextProvider({ children }) {
   const [cartList, setCartList] = useState([]);
 
   function agregarAlCarrito(item) {
-    console.log(item);
     // -1 no existe en el cart lis, 0 en adelante si is in cart
     const index = cartList.findIndex((prod) => prod.item.id === item.item.id);
 
@@ -45,7 +42,7 @@ function CartContextProvider({ children }) {
   function vaciarCarrito() {
     setCartList([]);
   }
-  console.log(cartList);
+
   return (
     <cartContext.Provider
       value={{
